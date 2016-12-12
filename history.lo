@@ -1,0 +1,16 @@
+500  cat /etc/shells
+  501  cat /etc/passwd
+  502  cat /etc/passwd | grep bash
+  503  zsh
+  504  echo $-
+  505  echo $HISTFILE
+  506  tail -n 10 $HISTFILE
+  507  dirs
+  508  popd
+  509  cd ..
+  510  dirs
+  511  popd
+  512  pushd
+  513  pushd /
+  514  popd
+  515  dirs
