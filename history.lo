@@ -14,3 +14,8 @@
   513  pushd /
   514  popd
   515  dirs
+  bash -x script.sh
+  
+set -x      # activate debugging from here
+w
+set +x      # stop debugging from here
