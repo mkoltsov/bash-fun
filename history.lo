@@ -31,3 +31,5 @@ so any changes made to your environment will be visible when the script finishes
 # Create a timestamp in a logfile.
 date >> $LOGFILE
 echo backup succeeded >> $LOGFILE
+echo '$date'
+$date
