@@ -22,3 +22,9 @@ set +x      # stop debugging from here
 which -a script_name
 whereis script_name
 locate script_name
+If you don't want to start a new shell but execute the script in the current shell, you source it:
+source script_name.sh
+source = .
+The Bash source built-in is a synonym for the Bourne shell . (dot) command.
+The script does not need execute permission in this case. Commands are executed in the current shell context,
+so any changes made to your environment will be visible when the script finishes execution:
