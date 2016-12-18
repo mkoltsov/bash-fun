@@ -19,3 +19,6 @@
 set -x      # activate debugging from here
 w
 set +x      # stop debugging from here
+which -a script_name
+whereis script_name
+locate script_name
