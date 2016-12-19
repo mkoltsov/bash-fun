@@ -33,3 +33,36 @@ date >> $LOGFILE
 echo backup succeeded >> $LOGFILE
 echo '$date'
 $date
+$(command)
+
+or like this using backticks:
+
+`command`
+
+Bash performs the expansion by executing COMMAND and replacing the command substitution with the standard output of the command, with any trailing newlines deleted. Embedded newlines are not deleted, but they may be removed during word splitting.
+
+franky ~> echo `date`
+Thu Feb 6 10:06:20 CET 2003
+
+echo $(( 1000-10 ))
+990
+bash-3.2$ echo $[ 1000-10]
+990
+
+grep -n root /etc/passwd
+grep -v bash /etc/passwd | grep -v nologin
+
+grep -c root /etc/passwd
+3
+
+grep -c '*' /etc/passwd
+
+ls -ld [[:digit:]]*
+
+ls -ld [[:upper:]]*
+
+grep -c '.' /etc/passwd == wc -l /etc/passwd
+
+sed -n '/root/p' /etc/passwd -- inclusive
+
+sed '/root/d' /etc/passwd -- exclusive
