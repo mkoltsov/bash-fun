@@ -66,3 +66,5 @@ grep -c '.' /etc/passwd == wc -l /etc/passwd
 sed -n '/root/p' /etc/passwd -- inclusive
 
 sed '/root/d' /etc/passwd -- exclusive
+
+sed '3,$d' /etc/passwd - 3rd line only
