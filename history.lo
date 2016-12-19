@@ -68,3 +68,27 @@ sed -n '/root/p' /etc/passwd -- inclusive
 sed '/root/d' /etc/passwd -- exclusive
 
 sed '3,$d' /etc/passwd - 3rd line only
+
+ls -l | awk '{ print $1 $4}'
+
+ls -ldh * | grep -v total | awk '{ print "Size is " $5 " bytes for " $9 }'
+
+df -h | sort -rnk 5 | head -3 | awk '{ print "Partition " $6 "\t: " $5 " full!" }'
+
+df -h | awk '/dev\/hd/ { print $6 "\t: " $5 }'
+
+ls -l | awk '/\<(a|x).*\.conf$/ { print $9 }'
+
+ls -l | awk 'BEGIN { print "Files found:\n" } /\<[a|x].*\.conf$/ { print $9 }'
+
+ls -l | awk '/\<[a|x].*\.conf$/ { print $9 } END { print "Can I do anything else for you, mistress?" }'
+
+df -h | awk -f diskrep.awk
+
+awk 'BEGIN { FS=":" } { print $1 "\t" $5 }' /etc/passwd
+
+awk '{ print $1, $2}' test
+
+awk 'BEGIN { OFS=";" ; ORS="\n-->\n" } { print $1,$2}' test
+
+awk -f processed.awk test
