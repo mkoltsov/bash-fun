@@ -148,3 +148,30 @@ if ! grep ^$USER /etc/passwd 1> /dev/null
  then echo "your user account is not managed locally"
  else echo "your account is managed from the local /etc/passwd file"
 fi
+
+ read pupa
+ echo $pupa
+
+ read
+ echo $REPLY
+
+ ls -l /dev/std*
+ ls -l /dev/fd/[0-2]
+ 
+ touch /Users/mkoltsov/dev/learn/bash-fun/testfile | at +1 minute
+ touch /Users/mkoltsov/dev/learn/bash-fun/testfile | at 1430
+
+ crontab -l
+
+
+ls -l * 2> /var/tmp/unaccessible-in-spool
+
+ls -l * > /var/tmp/spoollist 2>&1
+
+ls -l * 2 >& 1 > /var/tmp/spoollist
+
+exec 4> result.txt
+
+filter body.txt | cat header.txt /dev/fd/0 footer.txt >& 4
+
+cat result.txt
