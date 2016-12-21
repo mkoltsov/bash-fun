@@ -92,3 +92,45 @@ awk '{ print $1, $2}' test
 awk 'BEGIN { OFS=";" ; ORS="\n-->\n" } { print $1,$2}' test
 
 awk -f processed.awk test
+
+echo "This scripts checks the existence of the messages file."
+echo "Checking..."
+if [ -f /var/log/messages ]
+  then
+    echo "/var/log/messages exists."
+fi
+echo
+echo "...done."
+
+The ? variable holds the exit status of the previously executed command (the most recently completed foreground process).
+
+The following example shows a simple test:
+
+ if [ $? -eq 0 ]
+  then echo 'That was a good job!'
+ fi
+
+if ! grep $USER /etc/passwd
+  then echo "your user account is not managed locally"; fi 
+
+echo $?
+
+grep $USER /etc/passwd
+
+if [ $? -ne 0 ] ; then echo "not a local account" ; fi
+
+
+[ "$(whoami)" != 'root' ] && ( echo you are using a non-privileged account; exit 1 )
+
+num=`wc -l work.txt`
+
+if [ "$num" -gt "150" ]
+ then echo ; echo "you've worked hard enough for today."
+ echo ;
+fi  
+
+if [[ "$gender" == f* ]]
+ then echo "Pleasure to meet you, Madame."; fi
+
+ 
+test "$(whoami)" != 'root' && (echo you are using a non-privileged account; exit 1)
