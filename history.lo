@@ -132,5 +132,19 @@ fi
 if [[ "$gender" == f* ]]
  then echo "Pleasure to meet you, Madame."; fi
 
- 
+
 test "$(whoami)" != 'root' && (echo you are using a non-privileged account; exit 1)
+
+if [[ "$gender" == "f*" ]]
+then echo "Pleasure to meet you, Madame."
+ else echo "How come the lady hasn't got a drink yet?"
+fi
+
+  [] vs. [[]]
+  
+Contrary to [, [[ prevents word splitting of variable values. So, if VAR="var with spaces", you do not need to double quote $VAR in a test - eventhough using quotes remains a good habit. Also, [[ prevents pathname expansion, so literal strings with wildcards do not try to expand to filenames. Using [[, == and != interpret strings to the right as shell glob patterns to be matched against the value to the left, for instance: [[ "value" == val* ]]
+
+if ! grep ^$USER /etc/passwd 1> /dev/null
+ then echo "your user account is not managed locally"
+ else echo "your account is managed from the local /etc/passwd file"
+fi
