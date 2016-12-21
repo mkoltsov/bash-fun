@@ -175,3 +175,10 @@ exec 4> result.txt
 filter body.txt | cat header.txt /dev/fd/0 footer.txt >& 4
 
 cat result.txt
+
+ls *.empty
+ls *.empty > list
+
+for i in `cat list`; do cp "$i" "$i".bak1 ; done
+for i in `ls /sbin`; do file /sbin/$i | grep ASCII; done
+
