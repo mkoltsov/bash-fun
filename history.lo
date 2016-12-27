@@ -182,3 +182,51 @@ ls *.empty > list
 for i in `cat list`; do cp "$i" "$i".bak1 ; done
 for i in `ls /sbin`; do file /sbin/$i | grep ASCII; done
 
+
+for i in $PATHNAME/*; do
+  echo $i
+done
+
+
+#!/bin/bash
+
+# This script opens 4 terminal windows.
+
+i="0"
+
+while [ $i -lt 4 ]
+do
+  xterm &
+  i=$[$i+1]
+done
+
+# This script copies files from my homedirectory into the webserver directory.
+# (use scp and SSH keys for a remote directory)
+# A new directory is created every hour.
+
+PICSDIR=/home/carol/pics
+WEBDIR=/var/www/carol/webcam
+
+while true; do 
+  DATE=`date +%Y%m%d`
+  HOUR=`date +%H`
+  mkdir $WEBDIR/"$DATE"
+  
+  while [ $HOUR -ne "00" ]; do 
+    DESTDIR=$WEBDIR/"$DATE"/"$HOUR"
+    mkdir "$DESTDIR"
+    mv $PICDIR/*.jpg "$DESTDIR"/
+    sleep 3600
+    HOUR=`date +%H`
+  done
+done
+
+# This generates a file every 5 minutes
+
+while true; do
+touch pic-`date +%s`.jpg
+sleep 1
+echo "pushed one more"
+done
+
+while true; do curl 127.0.0.1; done
