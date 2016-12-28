@@ -230,3 +230,47 @@ echo "pushed one more"
 done
 
 while true; do curl 127.0.0.1; done
+
+declare -i VARIABLE=12
+declare -p VARIABLE
+
+-a  Variable is an array.
+-f  Use function names only.
+-i  The variable is to be treated as an integer; arithmetic evaluation is performed when the variable is assigned a value (see Section 3.4.6).
+-p  Display the attributes and values of each variable. When -p is used, additional options are ignored.
+-r  Make variables read-only. These variables cannot then be assigned values by subsequent assignment statements, nor can they be unset.
+-t  Give each variable the trace attribute.
+-x  Mark each variable for export to subsequent commands via the environment.
+
+ readonly TUX=penguinpower
+
+ declare -a ARRAYNAME
+ ARRAY=(value1 value2 ... valueN)
+ echo ${ARRAY[*]}
+ echo ${ARRAY[0]}
+ ARRAY[0]=chef
+ unset ARRAY[1]
+ unset ARRAY
+ echo ${#SHELL}
+ ARRAY=(one two three)
+ echo ${#ARRAY}
+ echo ${TEST:-test}
+ [ -z "${SHIT:-}" ] && SHIT=80
+
+ if [ -z "${COLUMNS:-}" ]; then
+  COLUMNS=80
+fi
+echo ${TEST2:=$TEST}
+export STRING="thisisaverylongname"
+echo ${STRING:4}
+ echo ${STRING:6:5}
+ echo ${ARRAY[*]#one}
+ echo ${ARRAY[*]#t}
+ echo ${ARRAY[*]#t*}
+ echo ${ARRAY[*]##t*}
+
+ echo $STRING
+thisisaverylongname
+
+[bob in ~] echo ${STRING%name}
+thisisaverylong
