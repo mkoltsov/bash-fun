@@ -274,3 +274,138 @@ thisisaverylongname
 
 [bob in ~] echo ${STRING%name}
 thisisaverylong
+
+if [ $RETVAL -eq 0 ]; then
+  <start the daemon>
+
+[ $RETVAL = 0 ] && touch /var/lock/subsys/amd
+
+exit $RETVAL
+
+test ()
+{
+echo "Positional parameter 1 in the function is $1."
+RETURN_VALUE=$?
+echo "The exit code of this function is $RETURN_VALUE."
+}
+
+test other_param
+
+You could make your own /etc/functions file that contains all functions that you use regularly on your system, in different scripts. Just put the line
+
+. /etc/functions
+
+#####
+
+pathmunge () {
+        if ! echo $PATH | /bin/egrep -q "(^|:)$1($|:)" ; then
+           if [ "$2" = "after" ] ; then
+              PATH=$PATH:$1
+           else
+              PATH=$1:$PATH
+           fi
+        fi
+}
+
+# Path manipulation
+if [ `id -u` = 0 ]; then
+        pathmunge /sbin
+        pathmunge /usr/sbin
+        pathmunge /usr/local/sbin
+fi
+
+pathmunge /usr/X11R6/bin after
+
+unset pathmunge
+
+man -k signal | grep list
+
+kill -l
+
+Standard key combination  Meaning
+Ctrl+C  The interrupt signal, sends SIGINT to the job running in the foreground.
+Ctrl+Y  The delayed suspend character. Causes a running process to be stopped when it attempts to read input from the terminal. Control is returned to the shell, the user can foreground, background or kill the process. Delayed suspend is only available on operating systems supporting this feature.
+Ctrl+Z  The suspend signal, sends a SIGTSTP to a running program, thus stopping it and returning control to the shell.
+
+Common kill signals
+
+Signal name Signal value  Effect
+SIGHUP  1 Hangup
+SIGINT  2 Interrupt from keyboard
+SIGKILL 9 Kill signal
+SIGTERM 15  Termination signal
+SIGSTOP 17,19,23  Stop the process
+
+maud: ~> ps -ef | grep stuck_process
+maud    5607   2214  0 20:05 pts/5    00:00:02 stuck_process
+
+maud: ~> kill -9 5607
+
+maud: ~> ps -ef | grep stuck_process
+maud    5614    2214 0 20:15 pts/5    00:00:00 grep stuck_process
+[1]+ Killed   stuck_process
+
+
+declare -t VARIABLE=value
+
+trap "echo VARIABLE is being used here." DEBUG
+
+# rest of the script
+
+
+#!/bin/bash
+
+LOCKFILE=/var/lock/makewhatis.lock
+
+# Previous makewhatis should execute successfully:
+
+[ -f $LOCKFILE ] && exit 0
+
+# Upon exit, remove lockfile.
+
+trap "{ rm -f $LOCKFILE ; exit 255; }" EXIT
+
+touch $LOCKFILE
+makewhatis -u -w
+exit 0
+
+Command Meaning
+> Redirect output
+>>  Append to file
+< Redirect input
+<<  "Here" document (redirect input)
+| Pipe output
+& Run process in background.
+; Separate commands on same line
+* Match any character(s) in filename
+? Match single character in filename
+[ ] Match any characters enclosed
+( ) Execute in subshell
+` ` Substitute output of enclosed command
+" " Partial quote (allows variable and command expansion)
+' ' Full quote (no expansion)
+\ Quote following character
+$var  Use value for variable
+$$  Process id
+$0  Command name
+$n  nth argument (n from 0 to 9)
+# Begin comment
+bg  Background execution
+break Break from loop statements
+cd  Change directories
+continue  Resume a program loop
+echo  Display output
+eval  Evaluate arguments
+exec  Execute a new shell
+fg  Foreground execution
+jobs  Show active jobs
+kill  Terminate running jobs
+newgrp  Change to a new group
+shift Shift positional parameters
+stop  Suspend a background job
+suspend Suspend a foreground job
+time  Time a command
+umask Set or list file permissions
+unset Erase variable or function definitions
+wait  Wait for a background job to finish
+
